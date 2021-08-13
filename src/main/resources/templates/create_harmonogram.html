@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Wet Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Wet Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/zabieg}">Zabiegi</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/wlasciciel}">Wlasciciele</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" th:href="@{/zwierzak}">Zwierzaki</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" th:href="@{/harmonograms}">Harmonogram</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Nowy termin </h1>
+				<div class = "card-body">
+					<form th:action="@{/harmonograms}" th:object = "${harmonograms}" method="POST">
+					
+					
+			
+					
+	<div class="col-lg-3" >
+    <select class="form-control" id="testOrder" name="testOrder" th:field="*{Zabieg}">
+       
+        <option th:each="zabiegi : ${zabiegi}"
+                th:value="${zabiegi.id}"
+                th:text="${zabiegi.NazwaZabiegu}+' : '+${zabiegi.Opis}"></option>
+    </select>
+    <a th:href = "@{/zabieg/new}"
+						 class = "btn btn-primary">Dodaj nowy zabieg</a>
+</div>
+<div class="col-lg-3" >
+    <select class="form-control" id="testOrder" name="testOrder" th:field="*{Zwierzak}">
+       
+        <option th:each="zwierzaki : ${zwierzaki}"
+                th:value="${zwierzaki.id}"
+                th:text="${zwierzaki.Imie}"></option>
+    </select>
+    <a th:href = "@{/zwierzak/new}"
+						 class = "btn btn-primary">Dodaj nowego zwierzaka</a>
+</div>
+						
+						<div class ="form-group">
+							<label>Data </label>
+							<input
+							type = "date"
+							name = "Data"
+							th:field = "*{Data}"
+							class = "form-control"
+							placeholder="Podaj date" 
+							
+							/>
+						</div>	
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
